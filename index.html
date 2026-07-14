@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salones Desordenados · Decálogo</title>
+    <!-- Fuente moderna y ligera -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f7f9fc 0%, #eef2f7 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .card {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 2.5rem 2.5rem 2rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Encabezado */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px dashed rgba(0, 0, 0, 0.08);
+            padding-bottom: 1.5rem;
+        }
+
+        .header-icon {
+            font-size: 2.8rem;
+            color: #e67e22;
+            background: #fef3e9;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 12px -6px rgba(230, 126, 34, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #2c3e50, #1a2a3a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .header h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            background: none;
+            -webkit-text-fill-color: #7f8c8d;
+            color: #7f8c8d;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+        /* Reflexión */
+        .reflexion {
+            background: #ffffffcc;
+            border-radius: 2rem;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 8px solid #e67e22;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+        }
+
+        .reflexion i {
+            font-size: 2.2rem;
+            color: #e67e22;
+            margin-top: 0.2rem;
+        }
+
+        .reflexion blockquote {
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #2d3e50;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .reflexion blockquote strong {
+            color: #c0392b;
+            font-weight: 600;
+        }
+
+        .reflexion .autor {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #34495e;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .reflexion .autor i {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-right: 0.3rem;
+        }
+
+        /* Reglas */
+        .reglas-titulo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .reglas-titulo h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a2a3a;
+            letter-spacing: -0.01em;
+        }
+
+        .reglas-titulo .badge {
+            background: #2c3e50;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+        }
+
+        .grid-reglas {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .regla-item {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+        }
+
+        .regla-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.12);
+            border-color: #e67e2240;
+        }
+
+        .regla-num {
+            background: #f1f4f8;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #2c3e50;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+
+        .regla-item:hover .regla-num {
+            background: #e67e22;
+            color: white;
+        }
+
+        .regla-texto {
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: #1e2b39;
+            line-height: 1.3;
+        }
+
+        .regla-texto small {
+            font-weight: 400;
+            color: #5d6f83;
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 0.1rem;
+        }
+
+        /* Pie */
+        .footer {
+            margin-top: 2.8rem;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .footer span i {
+            margin: 0 0.3rem;
+            color: #e67e22;
+        }
+
+        .footer .cta {
+            background: #2c3e50;
+            color: white;
+            padding: 0.4rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: none;
+            cursor: default;
+        }
+
+        .footer .cta i {
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 650px) {
+            .card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 2rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2.2rem;
+            }
+
+            .reflexion {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+
+            .reflexion i {
+                font-size: 1.8rem;
+            }
+
+            .grid-reglas {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .header h1 small {
+                font-size: 0.8rem;
+                display: block;
+                margin-left: 0;
+            }
+            .regla-item {
+                padding: 1rem;
+            }
+        }
+
+        /* Animación sutil al cargar */
+        .card {
+            animation: fadeUp 0.6s ease-out;
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- Encabezado -->
+        <div class="header">
+            <div class="header-icon">
+                <i class="fas fa-chalkboard"></i>
+            </div>
+            <h1>
+                Salones Desordenados
+                <small>· Decálogo del orden</small>
+            </h1>
+        </div>
+
+        <!-- Reflexión -->
+        <div class="reflexion">
+            <i class="fas fa-quote-left"></i>
+            <blockquote>
+                “Un salón desordenado no es solo un espacio caótico, es el reflejo de una mente que no termina de enfocarse.
+                <strong>Dejar tu sitio sucio</strong> es regalarle al cansancio un lugar donde instalarse.
+                El orden no es obsesión, es <strong>respeto</strong> por quienes comparten el aula y por tu propio aprendizaje.
+                Cada objeto en su lugar, cada silla recogida, cada basura en el cesto… son pequeños gestos que construyen
+                un ambiente donde <strong>todos podemos dar lo mejor</strong>.”
+                <span class="autor">
+                    <i class="fas fa-pencil-alt"></i> Reflexión para el estudiante tecnológico
+                </span>
+            </blockquote>
+        </div>
+
+        <!-- Título reglas -->
+        <div class="reglas-titulo">
+            <h2><i class="fas fa-list-check" style="color:#e67e22; margin-right: 0.6rem;"></i>10 Reglas de Oro</h2>
+            <span class="badge"><i class="fas fa-star" style="margin-right: 0.3rem;"></i>Compromiso</span>
+        </div>
+
+        <!-- Grid de reglas -->
+        <div class="grid-reglas">
+            <!-- Cada regla con su número y texto -->
+            <div class="regla-item">
+                <div class="regla-num">01</div>
+                <div class="regla-texto">Saluda siempre al llegar y al salir <small>· Cortesía y calidez</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">02</div>
+                <div class="regla-texto">Deposita tu basura en el cesto, sin excepciones <small>· No dejes huella</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">03</div>
+                <div class="regla-texto">Deja el baño limpio como lo encontraste <small>· Higiene compartida</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">04</div>
+                <div class="regla-texto">Ordena el salón antes de salir de clase <small>· Responsabilidad colectiva</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">05</div>
+                <div class="regla-texto">Empuja tu silla al levantarte <small>· Evita obstáculos</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">06</div>
+                <div class="regla-texto">Mantén libres los pasillos de circulación <small>· Fluidez y seguridad</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">07</div>
+                <div class="regla-texto">Respeta el patrimonio del instituto <small>· Cuidado de lo común</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">08</div>
+                <div class="regla-texto">Cuida las áreas verdes y los patios <small>· Naturaleza y bienestar</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">09</div>
+                <div class="regla-texto">Reporta daños o suciedad excesiva al personal <small>· Actúa, no ignores</small></div>
+            </div>
+            <div class="regla-item">
+                <div class="regla-num">10</div>
+                <div class="regla-texto">Da el ejemplo: tu actitud inspira a otros <small>· El cambio empieza en ti</small></div>
+            </div>
+        </div>
+
+        <!-- Pie de página -->
+        <div class="footer">
+            <span>
+                <i class="fas fa-graduation-cap"></i> Instituto Tecnológico · Orden y excelencia
+            </span>
+            <span class="cta">
+                <i class="fas fa-hand-sparkles"></i> #SalónLimpioMenteClara
+            </span>
+        </div>
+    </div>
+
+    <!-- Pequeño script para darle un toque interactivo (sin sobrecargar) -->
+    <script>
+        (function() {
+            // Efecto sutil: al pasar el mouse sobre cada regla, se resalta el número
+            const items = document.querySelectorAll('.regla-item');
+            items.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const num = this.querySelector('.regla-num');
+                    if (num) {
+                        num.style.transform = 'scale(1.1)';
+                        num.style.transition = 'transform 0.15s ease';
+                    }
+                });
+                item.addEventListener('mouseleave', function() {
+                    const num = this.querySelector('.regla-num');
+                    if (num) {
+                        num.style.transform = 'scale(1)';
+                    }
+                });
+            });
+
+            // Mensaje en consola amigable
+            console.log('🌱 Recuerda: el orden comienza contigo. ¡Aplica las 10 reglas!');
+        })();
+    </script>
+</body>
+</html>

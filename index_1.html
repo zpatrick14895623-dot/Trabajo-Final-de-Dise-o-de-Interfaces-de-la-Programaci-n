@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salones Desordenados · Decálogo Oscuro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0f1f;
+            background-image: radial-gradient(circle at 30% 10%, #1a1f3a 0%, #0a0e1a 90%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+            color: #e8edf5;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* Tarjetas generales */
+        .card {
+            background: rgba(20, 28, 58, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 2.5rem;
+            padding: 2.2rem 2.5rem;
+            border: 1px solid rgba(120, 140, 255, 0.15);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+            transition: all 0.2s ease;
+        }
+
+        /* Hero */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .hero-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .hero-icon {
+            font-size: 3.2rem;
+            color: #a78bfa;
+            background: rgba(167, 139, 250, 0.12);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(167, 139, 250, 0.25);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero h1 small {
+            display: block;
+            font-size: 1rem;
+            font-weight: 400;
+            -webkit-text-fill-color: #94a3b8;
+            color: #94a3b8;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-badge {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #c4b5fd;
+        }
+
+        .hero-badge i {
+            margin-right: 0.5rem;
+        }
+
+        /* Reflexión ampliada */
+        .reflexion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 750px) {
+            .reflexion-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .reflexion-main {
+            background: rgba(30, 41, 82, 0.5);
+            border-radius: 1.8rem;
+            padding: 1.8rem 2rem;
+            border-left: 6px solid #8b5cf6;
+        }
+
+        .reflexion-main i {
+            color: #a78bfa;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        .reflexion-main blockquote {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #d1d9f0;
+            margin: 0;
+        }
+
+        .reflexion-main blockquote strong {
+            color: #a78bfa;
+            font-weight: 600;
+        }
+
+        .reflexion-main .autor {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 500;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .reflexion-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            background: rgba(20, 28, 58, 0.6);
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            border: 1px solid rgba(120, 140, 255, 0.08);
+        }
+
+        .stat-item i {
+            font-size: 2rem;
+            color: #8b5cf6;
+            width: 45px;
+            text-align: center;
+        }
+
+        .stat-item .stat-text {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .stat-item .stat-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-top: 0.2rem;
+        }
+
+        /* Impacto / consecuencias */
+        .impacto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .impacto-item {
+            background: rgba(30, 41, 82, 0.4);
+            padding: 1.4rem 1.2rem;
+            border-radius: 1.8rem;
+            text-align: center;
+            border: 1px solid rgba(120, 140, 255, 0.06);
+            transition: 0.2s;
+        }
+
+        .impacto-item:hover {
+            background: rgba(139, 92, 246, 0.12);
+            border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        .impacto-item i {
+            font-size: 2.2rem;
+            color: #a78bfa;
+            margin-bottom: 0.5rem;
+        }
+
+        .impacto-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .impacto-item p {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        /* Reglas */
+        .reglas-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+        }
+
+        .reglas-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .reglas-header h2 i {
+            color: #8b5cf6;
+        }
+
+        .reglas-header .badge-dark {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #c4b5fd;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .grid-reglas {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .regla-item {
+            background: rgba(20, 28, 58, 0.5);
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid rgba(120, 140, 255, 0.06);
+            transition: 0.2s;
+        }
+
+        .regla-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .regla-num {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .regla-texto {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+        }
+
+        .regla-texto small {
+            font-weight: 400;
+            color: #94a3b8;
+            font-size: 0.75rem;
+            display: block;
+            margin-top: 0.1rem;
+        }
+
+        /* Testimonios / frases */
+        .testimonios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .testimonio {
+            background: rgba(20, 28, 58, 0.5);
+            padding: 1.5rem;
+            border-radius: 1.8rem;
+            border: 1px solid rgba(120, 140, 255, 0.06);
+        }
+
+        .testimonio i {
+            color: #8b5cf6;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .testimonio p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #d1d9f0;
+            font-style: italic;
+        }
+
+        .testimonio .autor-test {
+            display: block;
+            margin-top: 0.6rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #a78bfa;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem 0 0.5rem;
+            border-top: 1px solid rgba(120, 140, 255, 0.08);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .footer .social i {
+            margin: 0 0.5rem;
+            color: #64748b;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .footer .social i:hover {
+            color: #a78bfa;
+        }
+
+        .footer .cta-btn {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            padding: 0.5rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            border: none;
+            cursor: default;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+        }
+
+        .footer .cta-btn i {
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 650px) {
+            .card {
+                padding: 1.5rem;
+                border-radius: 1.8rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2.2rem;
+            }
+            .reflexion-main blockquote {
+                font-size: 1rem;
+            }
+            .grid-reglas {
+                grid-template-columns: 1fr;
+            }
+            .impacto {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .impacto {
+                grid-template-columns: 1fr;
+            }
+            .testimonios {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animación */
+        .container {
+            animation: fadeUp 0.7s ease-out;
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Hero -->
+        <div class="card hero">
+            <div class="hero-left">
+                <div class="hero-icon">
+                    <i class="fas fa-chalkboard-user"></i>
+                </div>
+                <div>
+                    <h1>Salones Desordenados <small>Decálogo del orden · Instituto Tecnológico</small></h1>
+                </div>
+            </div>
+            <div class="hero-badge">
+                <i class="fas fa-arrow-right"></i> #OrdenQueInspira
+            </div>
+        </div>
+
+        <!-- Reflexión + Estadísticas -->
+        <div class="card reflexion-grid">
+            <div class="reflexion-main">
+                <i class="fas fa-quote-right"></i>
+                <blockquote>
+                    “Un salón desordenado no es solo un espacio caótico, es el reflejo de una mente que no termina de enfocarse.
+                    <strong>Dejar tu sitio sucio</strong> es regalarle al cansancio un lugar donde instalarse.
+                    El orden no es obsesión, es <strong>respeto</strong> por quienes comparten el aula y por tu propio aprendizaje.
+                    Cada objeto en su lugar, cada silla recogida, cada basura en el cesto… son pequeños gestos que construyen
+                    un ambiente donde <strong>todos podemos dar lo mejor</strong>.”
+                    <span class="autor">
+                        <i class="fas fa-pencil-alt"></i> Reflexión para el estudiante tecnológico
+                    </span>
+                </blockquote>
+            </div>
+            <div class="reflexion-stats">
+                <div class="stat-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <div class="stat-text">+15 min perdidos al día</div>
+                        <div class="stat-desc">buscando materiales en salones desordenados</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-brain"></i>
+                    <div>
+                        <div class="stat-text">40% menos de concentración</div>
+                        <div class="stat-desc">en ambientes caóticos según estudios recientes</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <div class="stat-text">El 80% prefiere aulas ordenadas</div>
+                        <div class="stat-desc">mejora la convivencia y el rendimiento</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impacto / Consecuencias -->
+        <div class="card">
+            <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem;">
+                <i class="fas fa-triangle-exclamation" style="color: #f59e0b; font-size: 1.6rem;"></i>
+                <h3 style="font-weight: 600; font-size: 1.3rem;">¿Qué genera el desorden?</h3>
+            </div>
+            <div class="impacto">
+                <div class="impacto-item">
+                    <i class="fas fa-hourglass-half"></i>
+                    <h4>Pérdida de tiempo</h4>
+                    <p>Buscar útiles o limpiar retrasa el inicio de clase.</p>
+                </div>
+                <div class="impacto-item">
+                    <i class="fas fa-face-frown"></i>
+                    <h4>Estrés y ansiedad</h4>
+                    <p>El caos visual afecta el estado de ánimo y la motivación.</p>
+                </div>
+                <div class="impacto-item">
+                    <i class="fas fa-handshake-slash"></i>
+                    <h4>Falta de respeto</h4>
+                    <p>Dejar desorden es ignorar el esfuerzo de los demás.</p>
+                </div>
+                <div class="impacto-item">
+                    <i class="fas fa-school"></i>
+                    <h4>Deterioro del espacio</h4>
+                    <p>Mobiliario y áreas comunes se dañan más rápido.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reglas de oro -->
+        <div class="card">
+            <div class="reglas-header">
+                <h2><i class="fas fa-list-check"></i> 10 Reglas de Oro</h2>
+                <span class="badge-dark"><i class="fas fa-star"></i> Compromiso diario</span>
+            </div>
+            <div class="grid-reglas">
+                <div class="regla-item"><div class="regla-num">01</div><div class="regla-texto">Saluda siempre al llegar y al salir <small>· Cortesía y calidez</small></div></div>
+                <div class="regla-item"><div class="regla-num">02</div><div class="regla-texto">Deposita tu basura en el cesto, sin excepciones <small>· No dejes huella</small></div></div>
+                <div class="regla-item"><div class="regla-num">03</div><div class="regla-texto">Deja el baño limpio como lo encontraste <small>· Higiene compartida</small></div></div>
+                <div class="regla-item"><div class="regla-num">04</div><div class="regla-texto">Ordena el salón antes de salir de clase <small>· Responsabilidad colectiva</small></div></div>
+                <div class="regla-item"><div class="regla-num">05</div><div class="regla-texto">Empuja tu silla al levantarte <small>· Evita obstáculos</small></div></div>
+                <div class="regla-item"><div class="regla-num">06</div><div class="regla-texto">Mantén libres los pasillos de circulación <small>· Fluidez y seguridad</small></div></div>
+                <div class="regla-item"><div class="regla-num">07</div><div class="regla-texto">Respeta el patrimonio del instituto <small>· Cuidado de lo común</small></div></div>
+                <div class="regla-item"><div class="regla-num">08</div><div class="regla-texto">Cuida las áreas verdes y los patios <small>· Naturaleza y bienestar</small></div></div>
+                <div class="regla-item"><div class="regla-num">09</div><div class="regla-texto">Reporta daños o suciedad excesiva al personal <small>· Actúa, no ignores</small></div></div>
+                <div class="regla-item"><div class="regla-num">10</div><div class="regla-texto">Da el ejemplo: tu actitud inspira a otros <small>· El cambio empieza en ti</small></div></div>
+            </div>
+        </div>
+
+        <!-- Testimonios / Frases de inspiración -->
+        <div class="card">
+            <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem;">
+                <i class="fas fa-comment-dots" style="color: #a78bfa; font-size: 1.6rem;"></i>
+                <h3 style="font-weight: 600; font-size: 1.3rem;">Voces que inspiran el orden</h3>
+            </div>
+            <div class="testimonios">
+                <div class="testimonio">
+                    <i class="fas fa-quote-left"></i>
+                    <p>“El orden en el aula es el primer paso para el orden en la mente.”</p>
+                    <span class="autor-test">— Docente de Tecnología</span>
+                </div>
+                <div class="testimonio">
+                    <i class="fas fa-quote-left"></i>
+                    <p>“Cuando dejamos el salón limpio, estamos diciendo que valoramos nuestro tiempo y el de los demás.”</p>
+                    <span class="autor-test">— Estudiante de último año</span>
+                </div>
+                <div class="testimonio">
+                    <i class="fas fa-quote-left"></i>
+                    <p>“Un espacio ordenado invita a aprender, a crear y a compartir en armonía.”</p>
+                    <span class="autor-test">— Coordinador académico</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="card" style="padding: 1.5rem 2rem;">
+            <div class="footer">
+                <div>
+                    <i class="fas fa-graduation-cap" style="margin-right: 0.5rem; color: #8b5cf6;"></i>
+                    Instituto Tecnológico · Orden y Excelencia
+                </div>
+                <div class="social">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="cta-btn">
+                    <i class="fas fa-hand-sparkles"></i> #SalónLimpioMenteClara
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Pequeño script para efecto en números -->
+    <script>
+        document.querySelectorAll('.regla-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const num = this.querySelector('.regla-num');
+                if (num) {
+                    num.style.transform = 'scale(1.15)';
+                    num.style.transition = 'transform 0.15s ease';
+                }
+            });
+            item.addEventListener('mouseleave', function() {
+                const num = this.querySelector('.regla-num');
+                if (num) {
+                    num.style.transform = 'scale(1)';
+                }
+            });
+        });
+        console.log('🌙 Orden en la oscuridad: aplica las 10 reglas y transforma tu espacio.');
+    </script>
+</body>
+</html>
