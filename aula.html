@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salones Desordenados</title>
+    <!-- Iconos amigables -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* --- VARIABLES DE COLOR --- */
+        :root {
+            --bg-main: #151E24;       /* Color base solicitado */
+            --bg-darker: #0D1317;     /* Variación oscura */
+            --text-light: #FFFFFF;    /* Blanco */
+            --text-muted: #94A3B8;    /* Gris claro */
+            --accent: #38bdf8;        /* Azul cyan elegante */
+            --font-family: 'Times New Roman', Times, serif; /* Tipografía elegante */
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAV BAR --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background-color: var(--bg-darker);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(243, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            opacity: 0.7;
+        }
+
+        /* --- SECCIÓN INICIO (HERO) --- */
+        .hero {
+            position: relative;  
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            /* Se añade un borde inferior elegante para separar físicamente las dos secciones de fondo */
+            border-bottom: 4px solid var(--bg-darker);
+            background: linear-gradient(rgba(21, 30, 36, 0.88), rgba(21, 30, 36, 0.88)), url('salon_desordenado.jpg') no-repeat center center/cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .tagline {
+            color: var(--accent);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3.5rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            background-color: #E2E8F0;
+            color: #000000;
+            padding: 1rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* --- LÍNEA DIVISORA INTERMEDIA --- */
+        .section-separator {
+            height: 8px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            width: 100%;
+            opacity: 0.6;
+        }
+
+        /* --- SECCIÓN SABER MÁS (Desorden) --- */
+        .saber-mas-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8rem 8%;
+            text-align: center;
+            /* Se separa del Hero con un espaciado y fondo claro o borde */
+            background: linear-gradient(rgba(21, 30, 36, 0.90), rgba(21, 30, 36, 0.90)), url('salon_ordenado.jpg') no-repeat center center/cover;
+        }
+
+        .saber-mas-section h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .saber-mas-section .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin-bottom: 5rem;
+        }
+
+        .grid-caos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card-caos {
+            background-color: rgba(13, 19, 23, 0.9); /* Fondo más opaco para mayor legibilidad */
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .card-caos i {
+            color: var(--accent);
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-caos h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        .card-caos p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .card-caos:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.5);
+        }
+
+        /* --- SECCIÓN 10 REGLAS (Fondo Blanco) --- */
+        .reglas-section {
+            background-color: #FFFFFF;
+            color: #151E24;
+            padding: 8rem 8%;
+            border-top: 4px solid var(--bg-darker);
+        }
+
+        .reglas-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .decálogo-tag {
+            color: #3b82f6;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .reglas-header h2 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #151E24;
+            letter-spacing: 1px;
+        }
+
+        .grid-reglas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .regla-card {
+            background-color: #162029;
+            border: 1px solid #5682bb;
+            padding: 2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .regla-card .num {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: monospace;
+            border-right: 2px solid #E2E8F0;
+            padding-right: 1rem;
+        }
+
+        .regla-card p {
+            font-size: 1.15rem;
+            font-weight: normal;
+            color: #dadada;
+        }
+
+        .regla-card:hover {
+            background-color: #162029;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(21, 25, 37, 0.774);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            background-color: var(--bg-darker);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* --- VENTANA EMERGENTE (MODAL) PARA "NOSOTROS" --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 19, 23, 0.95);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-main);
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: var(--text-light);
+        }
+
+        .modal h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .modal-sub {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+
+        .grid-equipo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .miembro-card {
+            background-color: var(--bg-darker);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--accent);
+        }
+
+        .miembro-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+        }
+
+        .rol {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header class="navbar">
+        <div class="logo">
+            <!-- Agregamos el icono aquí al costado del texto -->
+            <i data-lucide="school" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; color: var(--accent);"></i>
+            <span>Salones Desordenados</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#inicio" class="active">Inicio</a>
+            <a href="#desorden">Desorden</a>
+            <a href="#reglas">Reglas</a>
+            <!-- Enlace que abre la ventana emergente -->
+            <a id="btn-nosotros">Nosotros</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN DE INICIO (HERO) - Fondo: Salón desordenado -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <span class="tagline">PROYECTO DE CONCIENTIZACIÓN</span>
+            <h1>Del caos al orden</h1>
+            <p>Un aula desordenada no es solo un problema visual, afecta directamente nuestra concentración, nuestra comodidad y nuestro rendimiento académico. Es hora de cambiar el chip.</p>
+            <a href="#desorden" class="btn-primary">Saber Más</a>
+        </div>
+    </section>
+
+    <!-- LÍNEA DE TRANSICIÓN ELEGANTE ENTRE SECCIONES DE FONDO -->
+    <div class="section-separator"></div>
+
+    <!-- SECCIÓN DESORDEN / SABER MÁS - Fondo: Salón ordenado -->
+    <section id="desorden" class="saber-mas-section">
+        <h2>¿Por qué importa el orden?</h2>
+        <p class="subtitle">El desorden en clase tiene consecuencias invisibles pero reales en nuestro día a día. Pasar de la distracción a un entorno armónico nos permite liberar todo nuestro potencial.</p>
+        
+        <div class="grid-caos">
+            <div class="card-caos">
+                <i data-lucide="brain-circuit"></i>
+                <h3>Menos Concentración</h3>
+                <p>El ruido visual constante satura la atención, reduciendo la capacidad para retener nueva información.</p>
+            </div>
+            <div class="card-caos">
+                <i data-lucide="frown"></i>
+                <h3>Estrés y Ansiedad</h3>
+                <p>Estudiar en entornos descuidados activa alertas inconscientes de incomodidad y cansancio prematuro.</p>
+            </div>
+            <div class="card-caos">
+                <i data-lucide="clock"></i>
+                <h3>Pérdida de Tiempo</h3>
+                <p>Buscar materiales o limpiar espacios improvisados nos resta valiosos minutos de aprendizaje.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN LAS 10 REGLAS - Fondo: Blanco absoluto -->
+    <section id="reglas" class="reglas-section">
+        <div class="reglas-header">
+            <span class="decálogo-tag">— DECÁLOGO DEL ESTUDIANTE TECNOLÓGICO</span>
+            <h2>10 REGLAS DE ORO</h2>
+        </div>
+
+        <div class="grid-reglas">
+            <div class="regla-card">
+                <span class="num">01</span>
+                <p>Saluda siempre al llegar y al salir</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">02</span>
+                <p>Deposita tu basura en el cesto, sin excepciones</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">03</span>
+                <p>Deja el baño limpio como lo encontraste</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">04</span>
+                <p>Ordena el salón antes de salir de clase</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">05</span>
+                <p>Empuja tu silla al levantarte</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">06</span>
+                <p>Mantén libre los pasillos de circulación</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">07</span>
+                <p>Respeta el patrimonio del instituto</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">08</span>
+                <p>Cuida las áreas verdes y los patios</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">09</span>
+                <p>Reporta daños o suciedad excesiva al personal</p>
+            </div>
+            <div class="regla-card">
+                <span class="num">10</span>
+                <p>Da el ejemplo: tu actitud inspira a otros</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 Salones Desordenados. Creado por nuestro equipo de desarrollo.</p>
+    </footer>
+
+    <!-- VENTANA EMERGENTE (MODAL) PARA "NOSOTROS" -->
+    <div id="modal-equipo" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Nuestro Equipo</h2>
+            <p class="modal-sub">Quienes construyeron y diseñaron este espacio de concientización:</p>
+            
+            <div class="grid-equipo">
+                <div class="miembro-card">
+                    <div class="avatar"><i data-lucide="code-xml"></i></div>
+                    <h3>Hirohito Tarazona</h3>
+                    <p class="rol">Diseño e Interfaz</p>
+                </div>
+                <div class="miembro-card">
+                    <div class="avatar"><i data-lucide="palette"></i></div>
+                    <h3>Juan Ortiz</h3>
+                    <p class="rol">Maquetación & Código</p>
+                </div>
+                <div class="miembro-card">
+                    <div class="avatar"><i data-lucide="pen-tool"></i></div>
+                    <h3>Jhair Rojas</h3>
+                    <p class="rol">Redacción y Contenido</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar iconos Lucide
+        lucide.createIcons();
+
+        // Lógica de la ventana flotante (Modal)
+        const btnNosotros = document.getElementById('btn-nosotros');
+        const modalEquipo = document.getElementById('modal-equipo');
+        const btnCerrar = document.querySelector('.close-btn');
+
+        btnNosotros.addEventListener('click', (e) => {
+            e.preventDefault();
+            modalEquipo.style.display = 'flex';
+        });
+
+        btnCerrar.addEventListener('click', () => {
+            modalEquipo.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modalEquipo) {
+                modalEquipo.style.display = 'none';
+            }
+        });
+
+        // Efecto scroll activo en el menú
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') && link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
