@@ -393,6 +393,156 @@
             color: var(--text-muted);
             font-size: 1rem;
         }
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        /* --- TABLETS (hasta 992px) --- */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .saber-mas-section h2,
+            .reglas-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* --- CELULARES GRANDES / TABLETS CHICAS (hasta 768px) --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.2rem 5%;
+            }
+
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.95rem;
+            }
+
+            .hero {
+                min-height: 85vh;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .btn-primary {
+                padding: 0.9rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .saber-mas-section {
+                padding: 5rem 6%;
+            }
+
+            .saber-mas-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .saber-mas-section .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 3rem;
+            }
+
+            .grid-caos {
+                gap: 1.5rem;
+            }
+
+            .reglas-section {
+                padding: 5rem 6%;
+            }
+
+            .reglas-header h2 {
+                font-size: 2rem;
+            }
+
+            .grid-reglas {
+                gap: 1.2rem;
+            }
+
+            .regla-card {
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .modal h2 {
+                font-size: 2rem;
+            }
+
+            .grid-equipo {
+                gap: 1.2rem;
+            }
+        }
+
+        /* --- CELULARES CHICOS (hasta 480px) --- */
+        @media (max-width: 480px) {
+            .logo span {
+                font-size: 1.1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .saber-mas-section h2,
+            .reglas-header h2 {
+                font-size: 1.7rem;
+            }
+
+            .card-caos {
+                padding: 2rem 1.5rem;
+            }
+
+            .regla-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.8rem;
+            }
+
+            .regla-card .num {
+                border-right: none;
+                border-bottom: 2px solid #E2E8F0;
+                padding-right: 0;
+                padding-bottom: 0.5rem;
+            }
+
+            .modal-content {
+                padding: 2rem 1.2rem;
+                width: 95%;
+            }
+        }
     </style>
 </head>
 <body>
